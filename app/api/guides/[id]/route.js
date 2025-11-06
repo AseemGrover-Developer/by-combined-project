@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../../../lib/dbconnect";
-import Guide from "../../../../models/Guide";
+import Guide from "../../../../lib/models/Guide";
 
 export async function DELETE(req, { params }) {
   try {
