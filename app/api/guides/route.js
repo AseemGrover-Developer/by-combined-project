@@ -1,7 +1,7 @@
 // app/api/guides/route.js
 import { connectDB } from "../../../lib/dbconnect";
 import Guide from "../../../lib/models/Guide";
-import { imagekit } from "../../../lib/imagekit";
+import  imagekit from "../../../lib/imagekit";
 
 export async function GET() {
   try {

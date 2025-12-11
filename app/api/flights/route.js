@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "../../../lib/dbconnect";
 import Flight from "../../../lib/models/Flight";
-import { imagekit } from "../../../lib/imagekit";
+import imagekit from "../../../lib/imagekit";
 
 // ✅ Fetch all flights
 export async function GET() {
