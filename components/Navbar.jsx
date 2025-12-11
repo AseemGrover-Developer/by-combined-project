@@ -1,54 +1,3 @@
-// "use client";
-// import { useState } from "react";
-// import Link from "next/link";
-// import { Menu, X } from "lucide-react";
-
-// export default function Navbar() {
-//   const [open, setOpen] = useState(false);
-
-//   return (
-//     <nav className="fixed top-0 left-0 w-full bg-transparent shadow-md z-50">
-//       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-//         {/* Logo */}
-//         <Link href="/" className="text-2xl font-bold text-orange-600">
-//           Bharat<span className="text-black">Yatra</span>
-//         </Link>
-
-//         {/* Desktop Menu */}
-//         <ul className="hidden md:flex space-x-8 text-gray-100 font-medium">
-//           <li><Link href="/slides" className="hover:text-orange-600 transition">Home</Link></li>
-//           <li><Link href="/services" className="hover:text-orange-600 transition">Services</Link></li>
-//           <li><Link href="/consultant" className="hover:text-orange-600 transition">Consultant</Link></li>
-//           <li><Link href="/about" className="hover:text-orange-600 transition">About</Link></li>
-//           <li><Link href="/contact" className="hover:text-orange-600 transition">Contact</Link></li>
-//         </ul>
-
-//         {/* Mobile Menu Button */}
-//         <button
-//           onClick={() => setOpen(!open)}
-//           className="md:hidden p-2 rounded-md text-gray-100 hover:text-orange-600"
-//         >
-//           {open ? <X size={28} /> : <Menu size={28} />}
-//         </button>
-//       </div>
-
-//       {/* Mobile Menu */}
-//       {open && (
-//         <div className="md:hidden bg-white shadow-inner">
-//           <ul className="flex flex-col items-center space-y-4 py-4 text-gray-100 font-medium">
-//             <li><Link href="/slides" onClick={() => setOpen(false)} className="hover:text-orange-600 transition">Home</Link></li>
-//             <li><Link href="/services" onClick={() => setOpen(false)} className="hover:text-orange-600 transition">Services</Link></li>
-//             <li><Link href="/consultant" onClick={() => setOpen(false)} className="hover:text-orange-600 transition">Consultant</Link></li>
-//             <li><Link href="/about" onClick={() => setOpen(false)} className="hover:text-orange-600 transition">About</Link></li>
-//             <li><Link href="/contact" onClick={() => setOpen(false)} className="hover:text-orange-600 transition">Contact</Link></li>
-//           </ul>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
-
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
@@ -66,16 +15,61 @@ export default function Navbar() {
     { name: "Contact", path: "/contact" },
   ];
 
+  // Animation Variants
+  const menuVariants = {
+    closed: {
+      opacity: 0,
+      y: -30,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const listVariants = {
+    open: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    closed: {
+      opacity: 0,
+      y: 20,
+    },
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 15,
+      },
+    },
+  };
+
   return (
-    <nav className="fixed top-0 left-0 w-full bg-transparent shadow-md z-50">
-      <div className="flex items-center justify-between px-6 py-4">
+    <nav className="fixed top-0 left-0 w-full bg-transparent shadow-md z-50 ">
+      <div className="flex items-center justify-between px-6 py-4 h-[7vh]">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold text-[#ff7f00]">
-          Bharat<span className="text-white"> Yatra</span>
+          Bharat<span className="text-gray-600"> Yatra</span>
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-white font-semibold">
+        <ul className="hidden md:flex space-x-8 text-(--text-color) font-semibold">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link
@@ -88,45 +82,59 @@ export default function Navbar() {
           ))}
         </ul>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Hamburger Button */}
         <button
           onClick={() => setOpen(!open)}
-          className="md:hidden p-2 rounded-md text-white"
+          className="md:hidden p-2 rounded-md text-(--heading-color)"
         >
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
-      {/* Mobile Menu (Animated) */}
+      {/* Mobile Menu Fullscreen Animated */}
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="md:hidden bg-white shadow-inner"
+            variants={menuVariants}
+            initial="closed"
+            animate="open"
+            exit="closed"
+            className="md:hidden fixed inset-0 bg-orange-600 text-white flex items-center overflow-hidden z-50 px-6"
           >
-            <ul className="flex flex-col items-center space-y-4 py-4 text-gray-800 font-medium">
+            <motion.ul
+              variants={listVariants}
+              className="flex flex-col gap-20"
+            >
               {navLinks.map((link) => (
                 <motion.li
                   key={link.name}
+                  variants={itemVariants}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Link
                     href={link.path}
                     onClick={() => setOpen(false)}
-                    className="hover:text-orange-600 transition-colors duration-300"
+                    className="text-white text-6xl font-extrabold tracking-wide"
                   >
                     {link.name}
+                    <div className="w-[100vw] mt-3 h-[1px] bg-white"></div>
                   </Link>
                 </motion.li>
               ))}
-            </ul>
+            </motion.ul>
+
+            {/* Close Button Inside Fullscreen Menu */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-6 right-6 text-white p-2"
+            >
+              <X size={34} />
+            </button>
           </motion.div>
         )}
       </AnimatePresence>
     </nav>
   );
 }
+

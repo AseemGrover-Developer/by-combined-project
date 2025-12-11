@@ -1,5 +1,5 @@
 import Map from "@/components/Map.jsx";
-import ArticalPage from "./about/page.jsx";
+
 import ServicesPage from "./services/page.jsx";
 import SlideShow from "./slides/page.jsx";
 import AnccientIndia from "./anccient-india/page.jsx";

@@ -55,7 +55,7 @@ export default function ContactPage() {
           </div>
 
           {/* Contact Form */}
-          <form className="bg-[#FEE5BC] border border-gray-200 shadow-md rounded-md p-6 flex flex-col space-y-4 mt-6 mx-5">
+          <form className="bg-(--bg-color) border border-gray-200 shadow-md rounded-md p-6 flex flex-col space-y-4 mt-6 mx-5">
             <input
               type="text"
               placeholder="Your Name"

@@ -3,7 +3,7 @@ import { Star } from "lucide-react";
 
 export default function ReviewCard({ review }) {
   return (
-    <div className="bg-[#FEE5BC] rounded-md shadow-md p-5 hover:shadow-lg transition-all duration-300 border border-orange-100 flex gap-5 items-center text-left">
+    <div className="bg-(--bg-color) rounded-md shadow-md p-5 hover:shadow-lg transition-all duration-300 border border-orange-100 flex gap-5 items-center text-left">
       <img
         src={review.image}
         alt={review.name}

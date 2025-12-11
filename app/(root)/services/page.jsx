@@ -50,7 +50,7 @@ export default function ServicesPage() {
             onClick={() => router.push(service.path)}
             className="relative cursor-pointer rounded-md p-[2px]" 
           >
-            <div className="relative bg-[#FEE5BC] rounded-md p-8 h-full flex flex-col items-center text-center border border-gray-200 shadow-md transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,165,0,0.3)]">
+            <div className="relative bg-(--bg-color) rounded-md p-8 h-full flex flex-col items-center text-center border border-gray-200 shadow-md transition-all duration-300 hover:shadow-[0_0_25px_rgba(255,165,0,0.3)]">
               {/* Subtle background glow */}
               <div
                 className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${service.color} opacity-10 blur-2xl`}

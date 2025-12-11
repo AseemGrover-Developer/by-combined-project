@@ -42,7 +42,7 @@ export default function BlogsPage() {
             <Link
               href={`/blogs/${blog._id}`}
               key={blog._id}
-              className="group bg-[#FEE5BC] border border-orange-100 shadow-lg rounded-md overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="group bg-(--bg-color) border border-orange-100 shadow-lg rounded-md overflow-hidden hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
             >
               <div className="overflow-hidden">
                 <img

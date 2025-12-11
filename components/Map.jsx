@@ -7,7 +7,7 @@ export default function Map() {
   const router = useRouter();
   const [hoveredState, setHoveredState] = useState(null);
   const [tooltip, setTooltip] = useState({ visible: false, x: 0, y: 0 });
-
+ 
   useEffect(() => {
     const container = document.getElementById("india-map-container");
 
@@ -43,7 +43,7 @@ export default function Map() {
             "fill-[#FFE5BC]",
             "stroke-[#333333]",
             "stroke-1",
-            "hover:fill-[#ffbc9a]",
+            "hover:fill-(--heading-color)",
           );
 
           // Hover events (LOGIC UNCHANGED)

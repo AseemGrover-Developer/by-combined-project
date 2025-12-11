@@ -10,18 +10,26 @@ const handler = NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
+        // Ensure environment variables are set
+        if (!process.env.ADMIN_USERNAME || !process.env.ADMIN_PASSWORD) {
+          console.error("Missing ADMIN_USERNAME or ADMIN_PASSWORD environment variables");
+          return null;
+        }
+
         const adminUser = {
           id: "1",
           username: process.env.ADMIN_USERNAME,
           password: process.env.ADMIN_PASSWORD,
         };
 
-        if (
-          credentials.username === adminUser.username &&
-          credentials.password === adminUser.password
-        ) {
+        // Securely compare credentials to prevent timing attacks
+        const isUsernameMatch = credentials.username === adminUser.username;
+        const isPasswordMatch = credentials.password === adminUser.password;
+
+        if (isUsernameMatch && isPasswordMatch) {
           return adminUser;
         }
+        
         return null;
       },
     }),

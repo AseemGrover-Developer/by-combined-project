@@ -1,7 +1,7 @@
 // app/api/guides/route.js
 import { connectDB } from "../../../lib/dbconnect";
 import Guide from "../../../lib/models/Guide";
-import imagekit from "../../../lib/imagekit";
+import { imagekit } from "../../../lib/imagekit";
 
 export async function GET() {
   try {
@@ -26,8 +26,7 @@ export async function POST(req) {
     let imageUrl = "";
 
     if (file && typeof file === "object") {
-      const bytes = await file.arrayBuffer();
-      const buffer = Buffer.from(bytes);
+      const buffer = await file.arrayBuffer();
       const uploadRes = await imagekit.upload({
         file: buffer,
         fileName: file.name,
@@ -48,16 +47,5 @@ export async function POST(req) {
     return Response.json({ message: "Guide added successfully!" });
   } catch (error) {
     return Response.json({ message: "Error adding guide", error }, { status: 500 });
-  }
-}
-
-export async function DELETE(req) {
-  try {
-    await connectDB();
-    const { id } = await req.json();
-    await Guide.findByIdAndDelete(id);
-    return Response.json({ message: "Guide deleted successfully!" });
-  } catch (error) {
-    return Response.json({ message: "Error deleting guide", error }, { status: 500 });
   }
 }
