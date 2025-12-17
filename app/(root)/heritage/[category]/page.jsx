@@ -34,9 +34,11 @@ export default async function CategoryPage({ params }) {
 
   return (
     <div className="min-h-screen bg-gray-100 text-gray-900 pb-16">
-      <div className="text-center py-12 bg-gradient-to-r from-orange-600 to-amber-500 text-white shadow-md">
-        <h1 className="text-4xl font-bold">{title}</h1>
+      <div className="text-center p-12 bg-[#ff7f00] text-white shadow-md">
+        <div className="mt-5">
+          <h1 className="text-4xl font-bold">{title}</h1>
         <p className="mt-2 text-lg">Explore India’s UNESCO World Heritage marvels</p>
+        </div>
       </div>
 
       <div className="w-full mt-12">
@@ -45,7 +47,7 @@ export default async function CategoryPage({ params }) {
             <SiteCard
               key={index}
               site={site}
-              reverse={index % 2 !== 0} // alternate layout
+              reverse={index % 2 !== 0} 
             />
           ))
         ) : (

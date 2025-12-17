@@ -19,11 +19,11 @@ export default function SlideShow() {
   }, []);
 
   // ✅ Auto change every 5s
-  // useEffect(() => {
-  //   if (slides.length === 0) return;
-  //   const timer = setInterval(() => nextSlide(), 5000);
-  //   return () => clearInterval(timer);
-  // }, [slides, index]);
+  useEffect(() => {
+    if (slides.length === 0) return;
+    const timer = setInterval(() => nextSlide(), 5000);
+    return () => clearInterval(timer);
+  }, [slides, index]);
 
   // ✅ Crossfade Animation
   useEffect(() => {
